@@ -5,13 +5,6 @@ if (!defined("WHMCS")) {
 }
 
 /**
- * Formatar valor como moeda
- */
-function format_as_currency($amount) {
-    return 'R$ ' . number_format($amount, 2, ',', '.');
-}
-
-/**
  * Buscar nome do departamento
  */
 function get_department_name($department_id) {
