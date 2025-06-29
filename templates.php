@@ -10,71 +10,55 @@ function get_default_templates() {
     return [
         'client_login' => [
             'name' => 'Login do Cliente',
-            'message' => "👋 Olá {firstname}!\n\nDetectamos um novo acesso à sua conta em {date}.\n\nSe não foi você, entre em contato conosco imediatamente.\n\n*IP:* {ip_address}\n*Navegador:* {browser}"
+            'message' => "👋 Olá {firstname}!\n\nDetectamos um novo acesso à sua conta em {datetime}.\n\nSe não foi você, entre em contato conosco imediatamente.\n\n*IP:* {ip_address}\n*Navegador:* {browser}"
         ],
         'client_register' => [
             'name' => 'Registro de Cliente',
-            'message' => "✨ Bem-vindo(a) {firstname}!\n\nSua conta foi criada com sucesso.\n\n*Dados de acesso:*\nEmail: {email}\nÁrea do cliente: {system_url}"
+            'message' => "✨ Bem-vindo(a) {firstname}!\n\nSua conta foi criada com sucesso.\n\n*Dados de acesso:*\nEmail: {email}\nÁrea do cliente: {system_url}\n\nEm caso de dúvidas, entre em contato conosco!"
         ],
         'invoice_created' => [
             'name' => 'Fatura Criada',
-            'message' => "📋 *Nova Fatura*\n\nOlá {firstname},\n\nUma nova fatura foi gerada para você:\n\n*Fatura:* #{invoiceid}\n*Valor:* {amount}\n*Vencimento:* {duedate}\n\nPara visualizar e pagar sua fatura, acesse:\n{invoice_url}"
+            'message' => "📋 *Nova Fatura Gerada*\n\nOlá {firstname},\n\nUma nova fatura foi gerada para você:\n\n*Fatura:* #{invoiceid}\n*Valor:* {amount}\n*Vencimento:* {duedate}\n\n💳 Para visualizar e pagar sua fatura, acesse:\n{invoice_url}\n\n⚠️ Lembre-se: o pagamento deve ser realizado até a data de vencimento para evitar a suspensão dos serviços."
         ],
         'invoice_paid' => [
             'name' => 'Fatura Paga',
-            'message' => "✅ *Pagamento Confirmado*\n\nOlá {firstname},\n\nO pagamento da fatura #{invoiceid} foi confirmado.\n\n*Valor:* {amount}\n*Data:* {date}\n\nObrigado pela preferência! 🙏"
+            'message' => "✅ *Pagamento Confirmado*\n\nOlá {firstname},\n\nO pagamento da fatura #{invoiceid} foi confirmado com sucesso!\n\n*Valor:* {amount}\n*Data do pagamento:* {date}\n*Método:* {payment_method}\n\nObrigado pela preferência! 🙏\n\nSeus serviços continuam ativos normalmente."
         ],
         'invoice_payment_reminder' => [
             'name' => 'Lembrete de Pagamento de Fatura',
-            'message' => "⚠️ *Lembrete de Pagamento*\n\nOlá {firstname},\n\nA fatura #{invoiceid} está próxima do vencimento.\n\n*Valor:* {amount}\n*Vencimento:* {duedate}\n\nEvite a suspensão dos serviços, pague agora:\n{invoice_url}"
+            'message' => "⚠️ *Lembrete de Pagamento*\n\nOlá {firstname},\n\nA fatura #{invoiceid} está próxima do vencimento.\n\n*Valor:* {amount}\n*Vencimento:* {duedate}\n\n🚨 Para evitar a suspensão dos seus serviços, efetue o pagamento o quanto antes:\n{invoice_url}\n\nEm caso de dúvidas, entre em contato conosco!"
         ],
         'invoice_payment_reminder_second' => [
             'name' => 'Lembrete de Pagamento - Segundo Aviso',
-            'message' => "🚨 *Segundo Aviso de Pagamento*\n\nOlá {firstname},\n\nA fatura #{invoiceid} está vencida!\n\n*Valor:* {amount}\n*Vencimento:* {duedate}\n\nRegularize agora para evitar a suspensão:\n{invoice_url}"
+            'message' => "🚨 *SEGUNDO AVISO - Fatura Vencida*\n\nOlá {firstname},\n\nA fatura #{invoiceid} está VENCIDA há {days_overdue} dias!\n\n*Valor:* {amount}\n*Vencimento:* {duedate}\n\n⛔ ATENÇÃO: Seus serviços podem ser suspensos a qualquer momento.\n\nRegularize AGORA para evitar interrupções:\n{invoice_url}\n\nPrecisa de ajuda? Entre em contato conosco!"
         ],
         'invoice_payment_reminder_final' => [
             'name' => 'Lembrete de Pagamento - Último Aviso',
-            'message' => "⛔ *ÚLTIMO AVISO DE PAGAMENTO*\n\nOlá {firstname},\n\nSua fatura #{invoiceid} está em atraso e seus serviços serão suspensos em 24 horas!\n\n*Valor:* {amount}\n*Vencimento:* {duedate}\n\nRegularize URGENTE:\n{invoice_url}"
-        ],
-        'hosting_created' => [
-            'name' => 'Hospedagem Criada',
-            'message' => "🌟 *Hospedagem Ativada*\n\nOlá {firstname},\n\nSua hospedagem foi ativada com sucesso!\n\n*Produto:* {service}\n*Domínio:* {domain}\n*Valor:* {recurringamount}/mês\n\nAcesse o painel de controle:\n{system_url}"
-        ],
-        'hosting_suspended' => [
-            'name' => 'Após Módulo Suspender',
-            'message' => "🔒 *Serviço Suspenso*\n\nOlá {firstname},\n\nSeu serviço de hospedagem foi suspenso por falta de pagamento.\n\n*Produto:* {service}\n*Domínio:* {domain}\n\nPara reativar, regularize os pagamentos em:\n{system_url}"
-        ],
-        'order_accepted' => [
-            'name' => 'AceitarPedido_whatsapp',
-            'message' => "🎉 *Pedido Aprovado*\n\nOlá {firstname},\n\nSeu pedido foi aprovado e está em processamento!\n\n*Produtos:*\n{service}\n\nAcompanhe o status em sua área do cliente:\n{system_url}"
+            'message' => "⛔ *ÚLTIMO AVISO - SUSPENSÃO IMINENTE*\n\nOlá {firstname},\n\nSua fatura #{invoiceid} está em atraso há {days_overdue} dias e seus serviços serão suspensos nas próximas 24 horas!\n\n*Valor:* {amount}\n*Vencimento:* {duedate}\n\n🔴 AÇÃO URGENTE NECESSÁRIA\n\nRegularize IMEDIATAMENTE para evitar a suspensão:\n{invoice_url}\n\n📞 Em caso de dificuldades, entre em contato conosco HOJE!"
         ],
         'service_created' => [
             'name' => 'Serviço Criado',
-            'message' => "🚀 *Serviço Ativado*\n\nOlá {firstname},\n\nSeu serviço foi ativado com sucesso!\n\n*Produto:* {service}\n*Valor:* {amount}/mês\n\nAcesse sua área do cliente para mais detalhes:\n{system_url}"
+            'message' => "🚀 *Serviço Ativado com Sucesso*\n\nOlá {firstname},\n\nSeu serviço foi ativado e está pronto para uso!\n\n*Produto:* {service}\n*Domínio:* {domain}\n*Valor mensal:* {amount}\n*Próximo vencimento:* {nextduedate}\n\n🎯 Acesse sua área do cliente para gerenciar seu serviço:\n{system_url}\n\nPrecisa de ajuda? Nossa equipe está à disposição!"
         ],
         'service_suspended' => [
             'name' => 'Serviço Suspenso',
-            'message' => "⚠️ *Serviço Suspenso*\n\nOlá {firstname},\n\nSeu serviço {service} foi suspenso.\n\nPara reativar, regularize os pagamentos pendentes em sua área do cliente:\n{system_url}"
+            'message' => "🔒 *Serviço Suspenso*\n\nOlá {firstname},\n\nInfelizmente, seu serviço foi suspenso devido a pendências financeiras.\n\n*Produto:* {service}\n*Domínio:* {domain}\n\n💡 Para reativar seu serviço:\n1. Acesse sua área do cliente\n2. Quite as faturas pendentes\n3. Aguarde até 24h para reativação automática\n\n🔗 Área do cliente: {system_url}\n\nPrecisa de ajuda? Entre em contato conosco!"
         ],
-        'domain_registered' => [
-            'name' => 'Domínio Registrado',
-            'message' => "🌐 *Domínio Registrado*\n\nOlá {firstname},\n\nSeu domínio foi registrado com sucesso!\n\n*Domínio:* {domain}\n*Validade:* {domain_nextduedate}\n\nLembre-se de configurar as DNS em sua área do cliente."
-        ],
-        'domain_renewal' => [
-            'name' => 'Renovação de Domínio',
-            'message' => "📅 *Renovação de Domínio*\n\nOlá {firstname},\n\nSeu domínio {domain} vence em {days} dias.\n\nRenove agora para evitar a suspensão do serviço:\n{domain_url}"
+        'order_accepted' => [
+            'name' => 'Pedido Aprovado',
+            'message' => "🎉 *Pedido Aprovado e em Processamento*\n\nOlá {firstname},\n\nSeu pedido foi aprovado com sucesso e está sendo processado!\n\n*Valor total:* {amount}\n\n*Produtos/Serviços:*\n{service}\n\n⏱️ Seus serviços serão ativados em até 24 horas.\n\n📊 Acompanhe o status em sua área do cliente:\n{system_url}\n\nObrigado pela confiança!"
         ],
         'ticket_reply' => [
             'name' => 'Resposta de Ticket',
-            'message' => "📬 *Nova Resposta*\n\nOlá {firstname},\n\nHá uma nova resposta no seu ticket #{ticketid}.\n\n*Assunto:* {ticket_subject}\n\nAcesse sua área do cliente para visualizar:\n{ticket_url}"
+            'message' => "📬 *Nova Resposta no seu Ticket*\n\nOlá {firstname},\n\nHá uma nova resposta no seu ticket de suporte.\n\n*Ticket:* #{ticketid}\n*Assunto:* {ticket_subject}\n\n👀 Acesse para visualizar a resposta:\n{ticket_url}\n\nNossa equipe está sempre pronta para ajudar!"
         ],
         'admin_new_order' => [
-            'name' => 'Novo Pedido',
-            'message' => "🛍️ *Novo Pedido Recebido*\n\nDetalhes do Cliente:\nNome: {firstname} {lastname}\nEmail: {email}\nTelefone: {phonenumber}\n\nValor: {amount}\nProdutos: {service}\n\nAcesse o painel admin para processar."
+            'name' => 'Novo Pedido (Admin)',
+            'message' => "🛍️ *Novo Pedido Recebido*\n\n*Cliente:*\nNome: {firstname} {lastname}\nEmail: {email}\nTelefone: {phonenumber}\n\n*Pedido:*\nValor: {amount}\n\n*Produtos/Serviços:*\n{service}\n\n🔧 Acesse o painel administrativo para processar o pedido."
         ],
         'admin_new_ticket' => [
-            'name' => 'Novo Ticket',
-            'message' => "🎫 *Novo Ticket*\n\nTicket #{ticketid}\nCliente: {firstname} {lastname}\nAssunto: {ticket_subject}\nPrioridade: {ticket_priority}\n\nAcesse o painel para responder."
+            'name' => 'Novo Ticket (Admin)',
+            'message' => "🎫 *Novo Ticket de Suporte*\n\n*Ticket:* #{ticketid}\n*Cliente:* {firstname} {lastname}\n*Email:* {email}\n*Assunto:* {ticket_subject}\n*Prioridade:* {ticket_priority}\n*Departamento:* {ticket_department}\n\n🔧 Acesse o painel administrativo para responder."
         ]
     ];
 }
@@ -89,7 +73,7 @@ function get_template($template_key) {
         $template = mysql_fetch_array($result);
         
         if ($template && !empty($template['message'])) {
-            logActivity("Template encontrado no banco: " . $template['message']);
+            logActivity("Template encontrado no banco: " . truncate_text($template['message'], 100));
             return $template['message'];
         }
         
@@ -105,7 +89,7 @@ function get_template($template_key) {
             ];
             
             insert_query('mod_whatsapp_templates', $insert);
-            logActivity("Template padrão inserido: " . $default_templates[$template_key]['message']);
+            logActivity("Template padrão inserido: " . $template_key);
             return $default_templates[$template_key]['message'];
         }
         
@@ -130,11 +114,11 @@ function replace_variables($message, $vars) {
             '{time}' => date('H:i'),
             '{datetime}' => date('d/m/Y H:i'),
             '{ip_address}' => isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '',
-            '{browser}' => isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : ''
+            '{browser}' => isset($_SERVER['HTTP_USER_AGENT']) ? truncate_text($_SERVER['HTTP_USER_AGENT'], 50) : ''
         ];
 
         // Dados do cliente
-        if (isset($vars['userid'])) {
+        if (isset($vars['userid']) && !empty($vars['userid'])) {
             $result = select_query('tblclients', '*', ['id' => $vars['userid']]);
             $client = mysql_fetch_array($result);
             
@@ -157,12 +141,12 @@ function replace_variables($message, $vars) {
         }
 
         // Dados da fatura
-        if (isset($vars['invoiceid'])) {
+        if (isset($vars['invoiceid']) && !empty($vars['invoiceid'])) {
             $result = select_query('tblinvoices', '*', ['id' => $vars['invoiceid']]);
             $invoice = mysql_fetch_array($result);
             
             if ($invoice) {
-                $invoice_url = $replacements['{system_url}'] . '/viewinvoice.php?id=' . $invoice['id'];
+                $invoice_url = generate_secure_invoice_url($invoice['id'], $invoice['userid']);
                 
                 $replacements = array_merge($replacements, [
                     '{invoiceid}' => $invoice['id'],
@@ -183,14 +167,12 @@ function replace_variables($message, $vars) {
         }
 
         // Dados do serviço
-        if (isset($vars['serviceid'])) {
-            $result = select_query('tblhosting', '*', ['id' => $vars['serviceid']]);
-            $service = mysql_fetch_array($result);
+        if (isset($vars['serviceid']) && !empty($vars['serviceid'])) {
+            $service_info = get_service_info($vars['serviceid']);
             
-            if ($service) {
-                // Busca nome do produto
-                $result = select_query('tblproducts', 'name', ['id' => $service['packageid']]);
-                $product = mysql_fetch_array($result);
+            if ($service_info) {
+                $service = $service_info['service'];
+                $product = $service_info['product'];
                 
                 $replacements = array_merge($replacements, [
                     '{service}' => $product ? $product['name'] : '',
@@ -210,17 +192,17 @@ function replace_variables($message, $vars) {
         }
 
         // Dados do ticket
-        if (isset($vars['ticketid'])) {
+        if (isset($vars['ticketid']) && !empty($vars['ticketid'])) {
             $result = select_query('tbltickets', '*', ['id' => $vars['ticketid']]);
             $ticket = mysql_fetch_array($result);
             
             if ($ticket) {
-                $ticket_url = $replacements['{system_url}'] . '/viewticket.php?tid=' . $ticket['tid'];
+                $ticket_url = generate_secure_ticket_url($ticket['id'], $ticket['userid']);
                 
                 $replacements = array_merge($replacements, [
                     '{ticketid}' => $ticket['tid'],
                     '{ticket_subject}' => $ticket['title'],
-                    '{ticket_message}' => $ticket['message'],
+                    '{ticket_message}' => truncate_text(strip_tags($ticket['message']), 100),
                     '{ticket_status}' => $ticket['status'],
                     '{ticket_priority}' => $ticket['urgency'],
                     '{ticket_department}' => get_department_name($ticket['did']),
@@ -231,22 +213,47 @@ function replace_variables($message, $vars) {
 
         // Adiciona todas as variáveis do array $vars que ainda não foram definidas
         foreach ($vars as $key => $value) {
-            if (!isset($replacements['{' . $key . '}'])) {
-                $replacements['{' . $key . '}'] = $value;
+            $var_key = '{' . $key . '}';
+            if (!isset($replacements[$var_key])) {
+                // Se for array, converte para string legível
+                if (is_array($value)) {
+                    $replacements[$var_key] = array_to_readable_string($value);
+                } else {
+                    $replacements[$var_key] = (string)$value;
+                }
             }
         }
 
-        // Remove variáveis vazias
+        // Remove variáveis vazias ou substitui por valores padrão
         foreach ($replacements as $key => $value) {
             if (empty($value) && $value !== '0') {
-                $replacements[$key] = '';
+                // Define valores padrão para algumas variáveis importantes
+                switch ($key) {
+                    case '{firstname}':
+                        $replacements[$key] = 'Cliente';
+                        break;
+                    case '{lastname}':
+                        $replacements[$key] = '';
+                        break;
+                    case '{company_name}':
+                        $replacements[$key] = 'Nossa Empresa';
+                        break;
+                    default:
+                        $replacements[$key] = '';
+                }
             }
         }
 
         // Aplica as substituições
         $final_message = str_replace(array_keys($replacements), array_values($replacements), $message);
         
-        logActivity("Mensagem final após substituição de variáveis: " . $final_message);
+        // Remove linhas vazias excessivas
+        $final_message = preg_replace('/\n{3,}/', "\n\n", $final_message);
+        
+        // Remove espaços no início e fim
+        $final_message = trim($final_message);
+        
+        logActivity("Mensagem final após substituição: " . truncate_text($final_message, 200));
         
         return $final_message;
     } catch (Exception $e) {
@@ -314,10 +321,14 @@ function get_template_last_update($template_key) {
         ]);
         $template = mysql_fetch_array($result);
         
-        return $template ? $template['updated_at'] : date('Y-m-d H:i:s');
+        if ($template && $template['updated_at']) {
+            return date('d/m/Y H:i', strtotime($template['updated_at']));
+        }
+        
+        return 'Nunca atualizado';
     } catch (Exception $e) {
         logActivity("Erro ao buscar última atualização do template: " . $e->getMessage());
-        return date('Y-m-d H:i:s');
+        return 'Erro ao verificar';
     }
 }
 ?>
